@@ -1,6 +1,6 @@
 # Claude Code 수석 포렌식 감사관의 감사 기록 및 피드백 로그
 
-본 문서는 Anthropic의 **Claude Opus 5.5 / Claude Code**가 본 프로젝트를 감사하면서 남긴 핵심 평가와, 디스크 및 실행 로그를 직접 대조하여 잡아낸 포렌식 감사 기록을 보존합니다.
+본 문서는 Anthropic의 **Claude Opus 5.5 (High) / Claude Code**가 본 프로젝트를 감사하면서 남긴 핵심 평가와, 디스크 및 실행 로그를 직접 대조하여 잡아낸 포렌식 감사 기록을 보존합니다.
 
 ---
 
@@ -61,7 +61,7 @@
 
 ### [양사 모델 감사 결과 비교 매트릭스]
 
-| 지적 항목 | Antigravity (Gemini 3.8 Flash High) | Claude Pro (Claude Opus 5.5) | 일치 여부 |
+| 지적 항목 | Antigravity (Gemini 3.8 Flash High) | Claude Pro (Claude Opus 5.5 High) | 일치 여부 |
 | :--- | :---: | :---: | :---: |
 | **loader 실패 시 Event 미해제로 영구 데드락(Hang)** | **[치명적]** 60~72행 지적 | **① [치명적]** 62~64행 지적 (재현 완료) | **100% 일치** |
 | **`popitem()` LIFO 기본값으로 인한 MRU/신규 키 오축출** | **[중대]** 68~70행 지적 | **② [치명적]** 67~70행 지적 (재현 완료) | **100% 일치** |
@@ -83,8 +83,8 @@
 사용자가 과거 대화 기록이나 도구 메모리의 오염 가능성을 원천 차단하기 위해, **완전한 시크릿(Incognito) 창에서 제로 베이스로 Claude Pro에 프롬프트를 투입**하여 교차 검증을 진행했습니다.
 
 - **Antigravity (Gemini 3.8 Flash High):** **23점 / 100점** (도입 불가 / Fail)
-- **Claude Code (개발 환경 연동):** **22점 / 100점** (도입 불가 / Fail)
-- **Claude Pro (완전 격리 시크릿 창):** **19점 / 100점** (도입 불가 / Fail)
+- **Claude Code (Opus 5.5 High):** **22점 / 100점** (도입 불가 / Fail)
+- **Claude Pro (Opus 5.5 High / Incognito):** **19점 / 100점** (도입 불가 / Fail)
 
 세 환경 모두에서 **치명적 결함 3건(L60-64 데드락, L67-70 MRU 오축출, L57-58 KeyError)과 중대 결함 3건(M-1 무효화 유실, M-2 락 없는 쓰기, M-3 TTL 지연)의 줄 번호 및 원문 인용이 100% 일치**했습니다. 
 
