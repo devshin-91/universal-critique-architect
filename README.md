@@ -59,10 +59,11 @@ flowchart TD
   - **인용 규칙 정밀화:** 슬롯 방식은 원문 100% 직접 인용, 로컬/스킬 인라인 방식은 실제 줄 번호 인용 허용
   - 클로드로부터 *"프로덕션 도입 가능 (91점)"* 공식 인증 획득
 
-### Phase 4: 실전 스트레스 테스트 3부작 (Real-World Stress Testing)
+### Phase 4: 실전 스트레스 테스트 4부작 (Real-World Stress Testing)
 1. **Test 1 (무결점 이진 탐색 코드):** 억지 트집 없이 알고리즘 복잡도에 대해 `[정상(Pass)]` 출구가 정상 발동함 (Gemini 100점, Claude 86점).
 2. **Test 2 (3,600자 분산 결제 시스템 RFC):** 3,000자 초과 슬롯 감지, 줄 번호 날조 없는 100% 원문 인용으로 120k TPS 단위 모순 및 RocksDB WAL 장애 저격 (Claude 35점 가혹 감사).
 3. **Test 3 (하드코딩 기밀/개인정보 코드):** `[REDACTED:TYPE]` 표식을 통해 개인정보보호법 제24조의2, 제29조 위반 및 CWE-798을 정확히 적발 (Claude 5점 판정).
+4. **Test 4 (블라인드 결함 주입 대조군 테스트):** 클로드가 악랄하게 결함을 숨긴 Single-flight 캐시 코드에 대해, Antigravity(23점)와 Claude(22점)가 단 1점 차이로 모든 동시성/데드락 결함을 100% 일치 적발함.
 
 ### Phase 5: 포렌식 감사 반영 및 v2.4 프로덕션 하든 (Final Hardened Release)
 클로드가 대화 덤프와 디스크 로그를 대조하여 지적한 미세 실행 결함 5가지를 완전히 봉쇄:
@@ -93,6 +94,7 @@ universal-critique-architect/
     ├── test1_clean_code.py                   # Test 1: 정상 출구 검증용 무결점 코드
     ├── test2_large_doc.md                    # Test 2: 토큰 세이프가드 검증용 3,000자+ RFC
     ├── test3_sensitive_code.py               # Test 3: 기밀 마스킹 검증용 취약 코드
+    ├── test4_singleflight_cache.py           # Test 4: 블라인드 결함 주입 대조군 코드
     └── mock_samples/
         ├── nexus_ai_pitch.md                 # 스타트업 피치덱 샘플
         ├── quantum_agi_paper.md              # 학술 논문 샘플
